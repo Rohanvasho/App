@@ -1,0 +1,23 @@
+<header>
+  <nav class ="navbar navbar-expand-md navbar-blue bg-blue">
+  <div><a  class="navbar-brand">MTX</a></div>
+  
+  
+  <ng-container *ngIf="loginService.isAdminLoggedIn();else second">
+    <a *ngIf="loginService.isAdminLoggedIn()" routerLink="/" class="nav-link">View Employees</a>
+    <a *ngIf="loginService.isAdminLoggedIn()" routerLink="/addemployee" class="nav-link">Add New Employee</a>
+    <a *ngIf="!loginService.isAdminLoggedIn()" routerLink="/login" class="nav-link">Login</a>
+    <a *ngIf="loginService.isAdminLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a>
+  </ng-container>
+  
+  <ng-template #second>
+     <ng-container *ngIf="loginService.isUserLoggedIn()">
+      <a  routerLink="/" class="nav-link">View Employees</a>
+      <a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a>
+      <a  routerLink="/logout" class="nav-link">LogOut</a>
+     </ng-container>
+  </ng-template>
+  
+  </nav>
+  
+  </header>
