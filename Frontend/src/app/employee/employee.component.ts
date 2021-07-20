@@ -1,51 +1,46 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-
+import { Injectable } from '@angular/core';
 import { HttpClientService, Employee } from '../service/httpclient.service';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
-
-
-@Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class EmployeeComponent implements OnInit {
-
-  public employees:Employee[];
-  public editEmployee: Employee;
-  
+export class AuthenticationService {
 
   constructor(
-    private httpClientService:HttpClientService,private sanitizer: DomSanitizer
+    private httpClientService:HttpClientService
   ) { }
-  getBackground(image) {
-    return this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
-}
-  ngOnInit() {
-     this.httpClientService.getEmployees().subscribe(
-      response =>this.handleSuccessfulResponse(response),
-     );
+  authenticate(username, password) 
+  {
+    this.httpClientService.flag=true;
+    if (username === "admin" && password === "password") {
+      sessionStorage.setItem('username', username)
+      return true;
+    }
+    else if(username === "Rohan" && password === "password") 
+    {
+      sessionStorage.setItem('user', username)
+      return true;
+    }
+    else {
+      return false;  
+    }
   }
 
-handleSuccessfulResponse(response)
-{
-    this.employees=response;
-}
+  isAdminLoggedIn() {
+    let user = sessionStorage.getItem('username')
+    console.log(!(user === null))
+    return !(user === null)
+  }
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('user')
+    console.log(!(user === null))
+    this.httpClientService.flag=false;
+    return !(user === null)
+  }
+  logOut() {
+    this.httpClientService.flag=true;  
 
-
-deleteEmployee(employee: Employee): void {
-   console.log(this.httpClientService.flag+"hi")
-   if(this.httpClientService.flag==false) return ;
-   this.httpClientService.deleteEmployee(employee)
-     .subscribe( data => {
-      this.employees = this.employees.filter(u => u !== employee);
-   })
-};
-
-
-
-
-
+    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('user')
+  }
 }
