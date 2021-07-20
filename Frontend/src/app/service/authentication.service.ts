@@ -9,7 +9,9 @@ export class AuthenticationService {
   constructor(
     private httpClientService:HttpClientService
   ) { }
-  authenticate(username, password) {
+  authenticate(username, password) 
+  {
+    this.httpClientService.flag=true;
     if (username === "admin" && password === "password") {
       sessionStorage.setItem('username', username)
       return true;
@@ -32,7 +34,7 @@ export class AuthenticationService {
   isUserLoggedIn() {
     let user = sessionStorage.getItem('user')
     console.log(!(user === null))
-    this.httpClientService.flag=false
+    this.httpClientService.flag=false;
     return !(user === null)
   }
   logOut() {
