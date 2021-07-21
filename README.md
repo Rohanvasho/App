@@ -1,5 +1,5 @@
 # App
-In Backend ,I created a file related to fields of an Employee.I am storing the data related to an Employee in a PostgresQl. <br />
+In Backend ,I created a file related to fields of an Employee.I am storing the data related to an Employee in a PostgresQl Database. <br />
 I tested my Backend using Postman .<br />
 I also used several annotations to deal with several incoming request method type. <br />
 CORS configuration was allowed to enable cross ports communication between. <br />
