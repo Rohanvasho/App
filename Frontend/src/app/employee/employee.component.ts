@@ -18,7 +18,7 @@ export class EmployeeComponent implements OnInit {
   
 
   constructor(
-    private httpClientService:HttpClientService,private sanitizer: DomSanitizer
+    private httpClientService:HttpClientService
   ) { }
   getBackground(image) {
     return this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
