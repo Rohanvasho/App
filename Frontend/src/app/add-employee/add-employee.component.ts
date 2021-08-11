@@ -6,8 +6,10 @@ import { HttpClientService, Employee } from '../service/httpclient.service';
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.css']
 })
-export class AddEmployeeComponent implements OnInit {
-
+export class AddEmployeeComponent implements OnInit 
+{
+  
+  //User Initialized
   user: Employee = new Employee(0,null,"","",null," ");
 
   constructor(
@@ -17,6 +19,7 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
+  //Using httpClientService to create an employee
   createEmployee(): void {
     this.httpClientService.createEmployee(this.user)
         .subscribe( data => {
