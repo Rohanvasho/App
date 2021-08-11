@@ -19,9 +19,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkLogin() {
+  checkLogin() 
+  {
+    //Valid Username and password check 
     if (this.loginservice.authenticate(this.username, this.password)
     ) {
+      //if valid then navigate
       this.router.navigate([''])
       this.invalidLogin = false
     } else
