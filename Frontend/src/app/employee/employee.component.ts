@@ -20,8 +20,7 @@ export class EmployeeComponent implements OnInit {
   constructor(
     private httpClientService:HttpClientService
   ) { }
-  getBackground(image) {
-    return this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
+  
 }
   ngOnInit() {
      this.httpClientService.getEmployees().subscribe(
@@ -34,14 +33,19 @@ handleSuccessfulResponse(response)
     this.employees=response;
 }
 
+
 public searchEmployees(key: string): void {
   console.log(key);
   const results: Employee[] = [];
-  for (const employee of this.employees) {
+  //Can search by name,email,salary or designation 
+  for (const employee of this.employees) 
+  {
     if (employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
     || employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
     || employee.salary.toLowerCase().indexOf(key.toLowerCase()) !== -1
-    || employee.designation.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+    || employee.designation.toLowerCase().indexOf(key.toLowerCase()) !== -1) 
+    {
+      //push the search results
       results.push(employee);
     }
   }
@@ -50,9 +54,11 @@ public searchEmployees(key: string): void {
     this.httpClientService.getEmployees();
   }
 }
-deleteEmployee(employee: Employee): void {
-   
+deleteEmployee(employee: Employee): void 
+{
+   //flag is true if the user is an admin
    if(this.httpClientService.flag==false) return ;
+  
    this.httpClientService.deleteEmployee(employee)
      .subscribe( data => {
       this.employees = this.employees.filter(u => u !== employee);
