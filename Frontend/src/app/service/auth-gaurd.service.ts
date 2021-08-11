@@ -10,7 +10,9 @@ export class AuthGaurdService implements CanActivate {
   constructor(private router: Router,
     private authService: AuthenticationService) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) 
+  {
+    //Return true only if user and admin logins
     if (this.authService.isAdminLoggedIn())
     {  return true;}
     else if(this.authService.isUserLoggedIn())
