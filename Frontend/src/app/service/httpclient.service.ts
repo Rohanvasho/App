@@ -41,7 +41,10 @@ export class HttpClientService {
   public deleteEmployee(employee) {
     return this.httpClient.delete<Employee>("http://localhost:8080/employee/delete" + "/"+ employee.id);
   }
-  public createEmployee(employee) {
+  public createEmployee(employee) 
+  {
+    //Set the fields that ae not recieved from user 
+    //TODO
     employee.salary="20000";
     employee.id=1;
     employee.imageUrl="abc";
@@ -54,12 +57,6 @@ export class HttpClientService {
     return this.httpClient.put<Employee>("http://localhost:8080/employee/update", employee);
   }
 
-getHeaders(){
-  let username='admin'
-  let password='password'
 
-  let  basicString='Basic '+window.btoa(username + ':' + password)
-  return basicString;
-}
 
 }
