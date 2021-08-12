@@ -84,10 +84,6 @@ public class Employee {
 	public void setemployeeCode(String employeeCode) {
 		this.employeeCode = employeeCode;
 	}
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ",salary=" + salary + ",imageUrl=" + imageUrl + ",employeeCode=" + employeeCode + ", designation=" + designation + ", email=" + email
-				+ "]";
-	}
+
 
 }

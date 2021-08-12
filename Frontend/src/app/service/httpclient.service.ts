@@ -43,11 +43,7 @@ export class HttpClientService {
   }
   public createEmployee(employee) 
   {
-    //Set the fields that ae not recieved from user 
-    //TODO
-    employee.salary="20000";
-    employee.id=1;
-    employee.imageUrl="abc";
+    
     console.log(employee)
     return this.httpClient.post<Employee>("http://localhost:8080/employee/add", employee);
   }
@@ -57,6 +53,12 @@ export class HttpClientService {
     return this.httpClient.put<Employee>("http://localhost:8080/employee/update", employee);
   }
 
-
+  getHeaders(){
+    let username='admin'
+    let password='password'
+  
+    let  basicString='Basic '+window.btoa(username + ':' + password)
+    return basicString;
+  }
 
 }

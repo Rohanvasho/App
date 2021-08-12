@@ -17,6 +17,8 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+	//Access to XMLHttpRequest at 'http://localhost:8080' from origin 'http://localhost:4200' Was blocked by CORS policy
+	//Therefore added CorsFilter so that 'Access-Control-Allow-Origin' header is present on the requested resource.
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
